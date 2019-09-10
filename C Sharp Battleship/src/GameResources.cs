@@ -40,11 +40,10 @@ namespace Battleship
             NewImage("RandomButton", "deploy_randomize_button.png");
 
             // Ships
-            int i = default(int);
-            for (i = 1; i <= 5; i++)
+            for (int i = 1; i <= 5; i++)
             {
-                NewImage("ShipLR" + Conversions.ToString(i), "ship_deploy_horiz_" + Conversions.ToString(i) + ".png");
-                NewImage("ShipUD" + Conversions.ToString(i), "ship_deploy_vert_" + Conversions.ToString(i) + ".png");
+                NewImage("ShipLR" + Convert.ToString(i), "ship_deploy_horiz_" + Convert.ToString(i) + ".png");
+                NewImage("ShipUD" + Convert.ToString(i), "ship_deploy_vert_" + Convert.ToString(i) + ".png");
             }
 
             // Explosions
@@ -122,7 +121,7 @@ namespace Battleship
         private static Bitmap _LoaderFull;
         private static Bitmap _LoaderEmpty;
         private static Font _LoadingFont;
-        private static SoundEffect _StartSound;
+        //private static SoundEffect _StartSound;
 
         /// <summary>
         /// The Resources Class stores all of the Games Media Resources, such as Images, Fonts
@@ -171,7 +170,7 @@ namespace Battleship
 
             _Animation = SwinGame.LoadBitmap(SwinGame.PathToResource("SwinGameAni.jpg", ResourceKind.BitmapResource));
             _LoadingFont = SwinGame.LoadFont(SwinGame.PathToResource("arial.ttf", ResourceKind.FontResource), 12);
-            _StartSound = Audio.LoadSoundEffect(SwinGame.PathToResource("SwinGameStart.ogg", ResourceKind.SoundResource));
+            //_StartSound = Audio.LoadSoundEffect(SwinGame.PathToResource("SwinGameStart.ogg", ResourceKind.SoundResource));
 
             _LoaderFull = SwinGame.LoadBitmap(SwinGame.PathToResource("loader_full.png", ResourceKind.BitmapResource));
             _LoaderEmpty = SwinGame.LoadBitmap(SwinGame.PathToResource("loader_empty.png", ResourceKind.BitmapResource));
@@ -183,7 +182,7 @@ namespace Battleship
         {
             const int ANI_CELL_COUNT = 11;
 
-            Audio.PlaySoundEffect(_StartSound);
+            //Audio.PlaySoundEffect(_StartSound);
             SwinGame.Delay(200);
 
             int i;
@@ -209,7 +208,7 @@ namespace Battleship
             const int BG_Y = 453;
 
             int fullW;
-            Rectangle toDraw = default(Rectangle);
+            Rectangle toDraw = default;
 
             fullW = (260 * number) / STEPS;
             SwinGame.DrawBitmap(_LoaderEmpty, BG_X, BG_Y);
@@ -238,7 +237,7 @@ namespace Battleship
             SwinGame.FreeBitmap(_Animation);
             SwinGame.FreeBitmap(_LoaderEmpty);
             SwinGame.FreeBitmap(_LoaderFull);
-            Audio.FreeSoundEffect(_StartSound);
+            //SwinGame.FreeSoundEffect(_StartSound);
             SwinGame.ChangeScreenSize(width, height);
         }
 
@@ -274,30 +273,30 @@ namespace Battleship
 
         private static void FreeFonts()
         {
-            Font obj = default(Font);
-            foreach (var obj in _Fonts.Values)
-                SwinGame.FreeFont(obj);
+            Font obj = default;
+            foreach (var o in _Fonts.Values)
+                SwinGame.FreeFont(o);
         }
 
         private static void FreeImages()
         {
             Bitmap obj = default(Bitmap);
-            foreach (var obj in _Images.Values)
-                SwinGame.FreeBitmap(obj);
+            foreach (var o in _Images.Values)
+                SwinGame.FreeBitmap(o);
         }
 
         private static void FreeSounds()
         {
             SoundEffect obj = default(SoundEffect);
-            foreach (var obj in _Sounds.Values)
-                Audio.FreeSoundEffect(obj);
+            foreach (var o in _Sounds.Values)
+                Audio.FreeSoundEffect(o);
         }
 
         private static void FreeMusic()
         {
             Music obj = default(Music);
-            foreach (var obj in _Music.Values)
-                Audio.FreeMusic(obj);
+            foreach (var o in _Music.Values)
+                Audio.FreeMusic(o);
         }
 
         public static void FreeResources()

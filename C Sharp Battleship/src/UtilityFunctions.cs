@@ -191,7 +191,7 @@ namespace Battleship
                 return;
 
             int shipHeight = default(int), shipWidth = default(int);
-            string shipName = default(string);
+            string shipName = default;
 
             // Draw the ships
             foreach (Ship s in thePlayer)
@@ -216,7 +216,7 @@ namespace Battleship
                 }
 
                 if (!small)
-                    SwinGame.DrawBitmap(GameImage[shipName], colLeft, rowTop);
+                    SwinGame.DrawBitmap(GameResources.GameImage(shipName), colLeft, rowTop);
                 else
                 {
                     SwinGame.FillRectangle(SHIP_FILL_COLOR, colLeft, rowTop, shipWidth, shipHeight);
@@ -249,7 +249,7 @@ namespace Battleship
         /// </summary>
         public static void DrawMessage()
         {
-            SwinGame.DrawText(Message, MESSAGE_COLOR, GameFont["Courier"], FIELD_LEFT, MESSAGE_TOP);
+            SwinGame.DrawText(Message, MESSAGE_COLOR, GameResources.GameFont("Courier"), FIELD_LEFT, MESSAGE_TOP);
         }
 
         /// <summary>
@@ -257,27 +257,27 @@ namespace Battleship
         /// </summary>
         public static void DrawBackground()
         {
-            switch (CurrentState)
+            switch (GameController.CurrentState)
             {
                 case var @case when @case == GameState.ViewingMainMenu:
                 case var case1 when case1 == GameState.ViewingGameMenu:
                 case var case2 when case2 == GameState.AlteringSettings:
                 case var case3 when case3 == GameState.ViewingHighScores:
                     {
-                        SwinGame.DrawBitmap(GameImage["Menu"], 0, 0);
+                        SwinGame.DrawBitmap(GameResources.GameImage("Menu"), 0, 0);
                         break;
                     }
 
                 case var case4 when case4 == GameState.Discovering:
                 case var case5 when case5 == GameState.EndingGame:
                     {
-                        SwinGame.DrawBitmap(GameImage["Discovery"], 0, 0);
+                        SwinGame.DrawBitmap(GameResources.GameImage("Discovery"), 0, 0);
                         break;
                     }
 
                 case var case6 when case6 == GameState.Deploying:
                     {
-                        SwinGame.DrawBitmap(GameImage["Deploy"], 0, 0);
+                        SwinGame.DrawBitmap(GameResources.GameImage("Deploy"), 0, 0);
                         break;
                     }
 
@@ -308,7 +308,7 @@ namespace Battleship
             Sprite s;
             Bitmap imgObj;
 
-            imgObj = GameImage[image];
+            imgObj = GameResources.GameImage(image);
             imgObj.SetCellDetails(40, 40, 3, 3, 7);
 
             AnimationScript animation;
@@ -328,7 +328,7 @@ namespace Battleship
             foreach (Sprite s in _Animations)
             {
                 SwinGame.UpdateSprite(s);
-                if (s.animationHasEnded)
+                if (s.AnimationHasEnded)
                     ended.Add(s);
             }
 
@@ -351,7 +351,7 @@ namespace Battleship
             for (i = 1; i <= ANIMATION_CELLS * FRAMES_PER_CELL; i++)
             {
                 UpdateAnimations();
-                DrawScreen();
+                GameController.DrawScreen();
             }
         }
     }

@@ -110,8 +110,8 @@ namespace Battleship
             _shipName = ship;
             _tiles = new List<Tile>();
 
-            // gets the ship size from the enumarator
-            _sizeOfShip = _shipName;
+            // gets the ship size from the enumerator
+            _sizeOfShip = Convert.ToInt32(_shipName);
         }
 
         /// <summary>

@@ -13,8 +13,6 @@
     <SchemaVersion>2.0</SchemaVersion>
     <OutputType>Exe</OutputType>
     <ApplicationIcon>Resources\SwinGame.ico</ApplicationIcon>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug-Windows|x86' ">
     <Optimize>false</Optimize>
@@ -31,6 +29,8 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <OutputType>WinExe</OutputType>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
@@ -86,7 +86,6 @@
     <Compile Include="src\EndingGameController.cs" />
     <Compile Include="src\GameController.cs" />
     <Compile Include="src\GameLogic.cs" />
-    <Compile Include="src\GameMain.cs" />
     <Compile Include="src\GameResources.cs" />
     <Compile Include="src\GameState.cs" />
     <Compile Include="src\HighScoreController.cs" />

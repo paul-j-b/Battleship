@@ -3,6 +3,7 @@
 /// all ships are deployed and if all ships are detroyed. A Player can also attach.
 /// </summary>
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
@@ -24,7 +25,8 @@ namespace Battleship
         protected static Random _Random = new Random();
 
         private Dictionary<ShipName, Ship> _Ships = new Dictionary<ShipName, Ship>();
-        private SeaGrid _playerGrid = new SeaGrid(_Ships);
+        private SeaGrid _playerGrid;
+        // so this had a squiggly line, I moved it to the constructor
         private ISeaGrid _enemyGrid;
         protected BattleShipsGame _game;
 
@@ -63,6 +65,7 @@ namespace Battleship
 
         public Player(BattleShipsGame controller)
         {
+            _playerGrid = new SeaGrid(_Ships);
             _game = controller;
 
             // for each ship add the ships name so the seagrid knows about them
@@ -124,7 +127,7 @@ namespace Battleship
         /// <summary>
         /// Returns the Player's ship with the given name.
         /// </summary>
-        /// <param name="name">the name of the ship to return</param>
+        /// <paramname="name">the name of the ship to return</param>
         /// <value>The ship</value>
         /// <returns>The ship with the indicated name</returns>
         /// <remarks>The none ship returns nothing/null</remarks>
@@ -133,7 +136,7 @@ namespace Battleship
             if (name == ShipName.None)
                 return null;
 
-            return _Ships.Item;
+            return _Ships[name];
         }
 
         /// <summary>
@@ -201,7 +204,7 @@ namespace Battleship
         /// has.
         /// </summary>
         /// <returns>A Ship enumerator</returns>
-        public IEnumerator GetEnumerator()
+        public IEnumerator<Ship> GetEnumerator()
         {
             Ship[] result = new Ship[_Ships.Values.Count + 1];
             _Ships.Values.CopyTo(result, 0);
@@ -288,6 +291,11 @@ namespace Battleship
                 }
                 while (!placementSuccessful);
             }
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            throw new NotImplementedException();
         }
     }
 

@@ -28,7 +28,7 @@ namespace Battleship
         private const int _WIDTH = 10;
         private const int _HEIGHT = 10;
 
-        private Tile[,] _GameTiles = new Tile[Width - 1 + 1, Height - 1 + 1];
+        private Tile[,] _GameTiles;
         private Dictionary<ShipName, Ship> _Ships;
         private int _ShipsKilled = 0;
 
@@ -80,7 +80,7 @@ namespace Battleship
         /// <param name="x">x coordinate of the tile</param>
         /// <param name="y">y coordiante of the tile</param>
         /// <returns></returns>
-        public TileView get_Item(int x, int y)
+        public TileView Item(int x, int y)
         {
             return _GameTiles[x, y].View;
         }
@@ -107,6 +107,9 @@ namespace Battleship
         /// </summary>
         public SeaGrid(Dictionary<ShipName, Ship> ships)
         {
+            _GameTiles = new Tile[Width, Height];
+            // This has been moved down here from above
+
             // fill array with empty Tiles
             int i = default(int);
             var loopTo = Width - 1;
@@ -129,7 +132,7 @@ namespace Battleship
         /// <param name="direction">the direction the ship is going</param>
         public void MoveShip(int row, int col, ShipName ship, Direction direction)
         {
-            Ship newShip = _Ships(ship);
+            Ship newShip = _Ships[ship];
             newShip.Remove();
             AddShip(row, col, direction, newShip);
         }
@@ -150,7 +153,7 @@ namespace Battleship
                 int currentCol = col;
                 int dRow = default(int), dCol = default(int);
 
-                if (direction == direction.LeftRight)
+                if (direction == Direction.LeftRight)
                 {
                     dRow = 0;
                     dCol = 1;
@@ -202,7 +205,7 @@ namespace Battleship
             {
                 // tile is already hit
                 if (_GameTiles[row, col].Shot)
-                    return new AttackResult(ResultOfAttack.ShotAlready, "have already attacked [" + Conversions.ToString(col) + "," + Conversions.ToString(row) + "]!", row, col);
+                    return new AttackResult(ResultOfAttack.ShotAlready, "have already attacked [" + Convert.ToString(col) + "," + Convert.ToString(row) + "]!", row, col);
 
                 _GameTiles[row, col].Shoot();
 
