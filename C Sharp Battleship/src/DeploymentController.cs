@@ -80,7 +80,9 @@ namespace Battleship
                     _selectedShip = selected;
                 else
                     DoDeployClick();
-
+                
+                // ** BUG **
+                // ** Both buttons do the same thing. **
                 if (GameController.HumanPlayer.ReadyToDeploy & UtilityFunctions.IsMouseInRectangle(PLAY_BUTTON_LEFT, TOP_BUTTONS_TOP, PLAY_BUTTON_WIDTH, TOP_BUTTONS_HEIGHT))
                     GameController.EndDeployment();
                 else if (UtilityFunctions.IsMouseInRectangle(UP_DOWN_BUTTON_LEFT, TOP_BUTTONS_TOP, DIR_BUTTONS_WIDTH, TOP_BUTTONS_HEIGHT))
@@ -107,6 +109,8 @@ namespace Battleship
             mouse = SwinGame.MousePosition();
 
             // Calculate the row/col clicked
+            // ** BUG **
+            // ** cell being selected is 3 cells below the cell being clicked. **
             int row, col;
             row = Convert.ToInt32(Math.Floor((mouse.Y) / (UtilityFunctions.CELL_HEIGHT + UtilityFunctions.CELL_GAP)));
             col = Convert.ToInt32(Math.Floor((mouse.X - UtilityFunctions.FIELD_LEFT) / (UtilityFunctions.CELL_WIDTH + UtilityFunctions.CELL_GAP)));

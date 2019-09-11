@@ -308,6 +308,8 @@ namespace Battleship
         /// <param name="button">the button pressed</param>
         private static void PerformSetupMenuAction(int button)
         {
+            // ** BUG **
+            // ** All buttons set difficulty to hard. **
             switch (button)
             {
                 case SETUP_MENU_EASY_BUTTON:

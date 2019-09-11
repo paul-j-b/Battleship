@@ -63,6 +63,9 @@ namespace Battleship
             }
         }
 
+        /// <summary>
+        /// Player constructor, a player keeps track of their shots, hits and misses.
+        /// </summary>
         public Player(BattleShipsGame controller)
         {
             _playerGrid = new SeaGrid(_Ships);
@@ -115,6 +118,9 @@ namespace Battleship
             }
         }
 
+        /// <summary>
+        /// IsDestroyed returns true if all ships are destroyed
+        /// </summary>
         public bool IsDestroyed
         {
             get
@@ -152,6 +158,11 @@ namespace Battleship
             }
         }
 
+        /// <summary>
+        /// The number of hits the player has made
+        /// </summary>
+        /// <value>hits made</value>
+        /// <returns>the number of hits made</returns>
         public int Hits
         {
             get
@@ -173,6 +184,11 @@ namespace Battleship
             }
         }
 
+        /// <summary>
+        /// Total score of the player.
+        /// </summary>
+        /// <value>score</value>
+        /// <returns>the score of the player.</returns>
         public int Score
         {
             get
@@ -254,6 +270,9 @@ namespace Battleship
             return result;
         }
 
+        /// <summary>
+        /// Generate random deployment positions for the ships.
+        /// </summary>
         public virtual void RandomizeDeployment()
         {
             bool placementSuccessful = default(bool);

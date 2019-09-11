@@ -22,7 +22,10 @@ using SwinGameSDK;
 
 namespace Battleship
 {
-
+    // <summary>
+    // Ship has its own _shipName, and a list of the tiles it occupies. Has a length,
+    // position and direction.
+    // </summary>
     public class Ship
     {
         private ShipName _shipName;
@@ -89,6 +92,11 @@ namespace Battleship
             }
         }
 
+        /// <summary>
+        /// The column location of the ship
+        /// </summary>
+        /// <value>The leftmost location of the ship</value>
+        /// <returns>the column of the ship</returns>
         public int Column
         {
             get
@@ -97,6 +105,11 @@ namespace Battleship
             }
         }
 
+        /// <summary>
+        /// The direction location of the ship
+        /// </summary>
+        /// <value>The direction the ship is facing</value>
+        /// <returns>the direction of the ship</returns>
         public Direction Direction
         {
             get
@@ -105,6 +118,9 @@ namespace Battleship
             }
         }
 
+        /// <summary>
+        /// Ship constructor, a ship knows its shipName, the tiles it occupies and its size.
+        /// </summary>
         public Ship(ShipName ship)
         {
             _shipName = ship;
@@ -139,7 +155,7 @@ namespace Battleship
         }
 
         /// <summary>
-        /// IsDeployed returns if the ships is deployed, if its deplyed it has more than
+        /// IsDeployed returns if the ship is deployed, if its deplyed it has more than
         /// 0 tiles
         /// </summary>
         public bool IsDeployed
@@ -150,6 +166,9 @@ namespace Battleship
             }
         }
 
+        /// <summary>
+        /// IsDestroyed returns true if the ship is destroyed
+        /// </summary>
         public bool IsDestroyed
         {
             get
