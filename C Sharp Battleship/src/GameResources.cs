@@ -285,6 +285,8 @@ namespace Battleship
                 SwinGame.FreeBitmap(o);
         }
 
+        // ** BUG **
+        // ** Exception unhandled. **
         private static void FreeSounds()
         {
             SoundEffect obj = default(SoundEffect);
