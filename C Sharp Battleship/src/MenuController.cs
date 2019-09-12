@@ -215,7 +215,7 @@ namespace Battleship
         }
 
         /// <summary>
-        /// Determined if the mouse is over one of the button in the main menu.
+        /// Determines if the mouse is over one of the button in the main menu.
         /// </summary>
         /// <param name="button">the index of the button to check</param>
         /// <returns>true if the mouse is over that button</returns>

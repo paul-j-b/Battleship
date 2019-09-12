@@ -151,6 +151,12 @@ namespace Battleship
             SwinGame.RefreshScreen();
         }
 
+        /// <summary>
+        /// Plays the animation and sound for hitting a ship.
+        /// </summary>
+        /// <param name="row">the row being hit</param>
+        /// <param name="column">the column being hit</param>
+        /// <param name="showAnimation">true if explosion is to be played</param>
         private static void PlayHitSequence(int row, int column, bool showAnimation)
         {
             if (showAnimation)
@@ -161,6 +167,12 @@ namespace Battleship
             UtilityFunctions.DrawAnimationSequence();
         }
 
+        /// <summary>
+        /// Plays the animation and sound for hitting a ship.
+        /// </summary>
+        /// <param name="row">the row being shot</param>
+        /// <param name="column">the column being shot</param>
+        /// <param name="showAnimation">true if splash is to be played</param>
         private static void PlayMissSequence(int row, int column, bool showAnimation)
         {
             if (showAnimation)

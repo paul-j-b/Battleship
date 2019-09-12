@@ -34,7 +34,7 @@ namespace Battleship
 
         private const int TOP_BUTTONS_TOP = 72;
         private const int TOP_BUTTONS_HEIGHT = 46;
-
+        
         private const int PLAY_BUTTON_LEFT = 693;
         private const int PLAY_BUTTON_WIDTH = 80;
 

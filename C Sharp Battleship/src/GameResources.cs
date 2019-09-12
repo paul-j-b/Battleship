@@ -15,8 +15,57 @@ using SwinGameSDK;
 
 namespace Battleship
 {
+    /// <summary>
+    /// The Resources Class stores all of the Games Media Resources, such as Images, Fonts
+    /// Sounds, Music.
+    /// </summary>
     public static class GameResources
     {
+        private static Dictionary<string, Bitmap> _Images = new Dictionary<string, Bitmap>();
+        private static Dictionary<string, Font> _Fonts = new Dictionary<string, Font>();
+        private static Dictionary<string, SoundEffect> _Sounds = new Dictionary<string, SoundEffect>();
+        private static Dictionary<string, Music> _Music = new Dictionary<string, Music>();
+
+        private static Bitmap _Background;
+        private static Bitmap _Animation;
+        private static Bitmap _LoaderFull;
+        private static Bitmap _LoaderEmpty;
+        private static Font _LoadingFont;
+        //private static SoundEffect _StartSound;
+
+        public static void LoadResources()
+        {
+            int width, height;
+
+            width = SwinGame.ScreenWidth();
+            height = SwinGame.ScreenHeight();
+
+            SwinGame.ChangeScreenSize(800, 600);
+
+            ShowLoadingScreen();
+
+            ShowMessage("Loading fonts...", 0);
+            LoadFonts();
+            SwinGame.Delay(100);
+
+            ShowMessage("Loading images...", 1);
+            LoadImages();
+            SwinGame.Delay(100);
+
+            ShowMessage("Loading sounds...", 2);
+            LoadSounds();
+            SwinGame.Delay(100);
+
+            ShowMessage("Loading music...", 3);
+            LoadMusic();
+            SwinGame.Delay(100);
+
+            SwinGame.Delay(100);
+            ShowMessage("Game loaded...", 5);
+            SwinGame.Delay(100);
+            EndLoadingScreen(width, height);
+        }
+
         private static void LoadFonts()
         {
             NewFont("ArialLarge", "arial.ttf", 80);
@@ -72,7 +121,6 @@ namespace Battleship
         /// </summary>
         /// <param name="font">Name of Font</param>
         /// <returns>The Font Loaded with this Name</returns>
-
         public static Font GameFont(string font)
         {
             return _Fonts[font];
@@ -83,7 +131,6 @@ namespace Battleship
         /// </summary>
         /// <param name="image">Name of image</param>
         /// <returns>The image loaded with this name</returns>
-
         public static Bitmap GameImage(string image)
         {
             return _Images[image];
@@ -94,7 +141,6 @@ namespace Battleship
         /// </summary>
         /// <param name="sound">Name of sound</param>
         /// <returns>The sound with this name</returns>
-
         public static SoundEffect GameSound(string sound)
         {
             return _Sounds[sound];
@@ -105,60 +151,9 @@ namespace Battleship
         /// </summary>
         /// <param name="music">Name of music</param>
         /// <returns>The music with this name</returns>
-
         public static Music GameMusic(string music)
         {
             return _Music[music];
-        }
-
-        private static Dictionary<string, Bitmap> _Images = new Dictionary<string, Bitmap>();
-        private static Dictionary<string, Font> _Fonts = new Dictionary<string, Font>();
-        private static Dictionary<string, SoundEffect> _Sounds = new Dictionary<string, SoundEffect>();
-        private static Dictionary<string, Music> _Music = new Dictionary<string, Music>();
-
-        private static Bitmap _Background;
-        private static Bitmap _Animation;
-        private static Bitmap _LoaderFull;
-        private static Bitmap _LoaderEmpty;
-        private static Font _LoadingFont;
-        //private static SoundEffect _StartSound;
-
-        /// <summary>
-        /// The Resources Class stores all of the Games Media Resources, such as Images, Fonts
-        /// Sounds, Music.
-        /// </summary>
-
-        public static void LoadResources()
-        {
-            int width, height;
-
-            width = SwinGame.ScreenWidth();
-            height = SwinGame.ScreenHeight();
-
-            SwinGame.ChangeScreenSize(800, 600);
-
-            ShowLoadingScreen();
-
-            ShowMessage("Loading fonts...", 0);
-            LoadFonts();
-            SwinGame.Delay(100);
-
-            ShowMessage("Loading images...", 1);
-            LoadImages();
-            SwinGame.Delay(100);
-
-            ShowMessage("Loading sounds...", 2);
-            LoadSounds();
-            SwinGame.Delay(100);
-
-            ShowMessage("Loading music...", 3);
-            LoadMusic();
-            SwinGame.Delay(100);
-
-            SwinGame.Delay(100);
-            ShowMessage("Game loaded...", 5);
-            SwinGame.Delay(100);
-            EndLoadingScreen(width, height);
         }
 
         private static void ShowLoadingScreen()
