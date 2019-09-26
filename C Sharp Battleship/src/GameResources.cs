@@ -33,6 +33,7 @@ namespace Battleship
         private static Font _LoadingFont;
         //private static SoundEffect _StartSound;
 
+        //This method is used to call smaller methods to load particular resource types, and display a message to the user for each load.
         public static void LoadResources()
         {
             int width, height;
@@ -66,6 +67,7 @@ namespace Battleship
             EndLoadingScreen(width, height);
         }
 
+        //Load 4 new fonts in for use during the game, using the NewFont method. 
         private static void LoadFonts()
         {
             NewFont("ArialLarge", "arial.ttf", 80);
@@ -74,6 +76,7 @@ namespace Battleship
             NewFont("Menu", "ffaccess.ttf", 8);
         }
 
+        //Load images used in the game's background, deployment screen and ship images. 
         private static void LoadImages()
         {
             // Backgrounds
@@ -100,6 +103,7 @@ namespace Battleship
             NewImage("Splash", "splash.png");
         }
 
+        //Load sound resources with the NewSound method
         private static void LoadSounds()
         {
             NewSound("Error", "error.wav");
@@ -110,7 +114,8 @@ namespace Battleship
             NewSound("Winner", "winner.wav");
             NewSound("Lose", "lose.wav");
         }
-
+        
+        //Load the game music
         private static void LoadMusic()
         {
             NewMusic("Background", "horrordrone.mp3");
@@ -156,6 +161,8 @@ namespace Battleship
             return _Music[music];
         }
 
+        //Creates a variable to store a background image file to then be displaying during loading
+        //Calls the method to play the SwinGame introduction
         private static void ShowLoadingScreen()
         {
             _Background = SwinGame.LoadBitmap(SwinGame.PathToResource("SplashBack.png", ResourceKind.BitmapResource));
@@ -173,6 +180,7 @@ namespace Battleship
             PlaySwinGameIntro();
         }
 
+        //Shows the background image variable with a 20ms pause for the 11 iterations specified by ANI_CELL_COUNT
         private static void PlaySwinGameIntro()
         {
             const int ANI_CELL_COUNT = 11;
@@ -192,6 +200,7 @@ namespace Battleship
             SwinGame.Delay(1500);
         }
 
+        //This method is called in the main LoadResources method, to display a message to the user about the resources being loaded at each time
         private static void ShowMessage(string message, int number)
         {
             const int TX = 310;
@@ -221,6 +230,7 @@ namespace Battleship
             SwinGame.ProcessEvents();
         }
 
+        //Clears the bitmaps that were loaded to display background images
         private static void EndLoadingScreen(int width, int height)
         {
             SwinGame.ProcessEvents();
@@ -233,39 +243,49 @@ namespace Battleship
             SwinGame.FreeBitmap(_LoaderEmpty);
             SwinGame.FreeBitmap(_LoaderFull);
             //SwinGame.FreeSoundEffect(_StartSound);
+
+
+            //Resets the screen size if the loading screen to width/height variables, instead of set 800x600 for loading screen.
             SwinGame.ChangeScreenSize(width, height);
         }
 
+        //Used to load a new font into the game's memory, by identifying the font name and file location
         private static void NewFont(string fontName, string filename, int size)
         {
             _Fonts.Add(fontName, SwinGame.LoadFont(SwinGame.PathToResource(filename, ResourceKind.FontResource), size));
         }
 
+        //Used to load a new image into the game's memory, by identifying the image name and file location
         private static void NewImage(string imageName, string filename)
         {
             _Images.Add(imageName, SwinGame.LoadBitmap(SwinGame.PathToResource(filename, ResourceKind.BitmapResource)));
         }
 
+        //Used to load a new transparent image into the game's memory, by identifying the image name and file location
         private static void NewTransparentColorImage(string imageName, string fileName, Color transColor)
         {
             _Images.Add(imageName, SwinGame.LoadBitmap(SwinGame.PathToResource(fileName, ResourceKind.BitmapResource)));
         }
 
+        //This method is not used
         private static void NewTransparentColourImage(string imageName, string fileName, Color transColor)
         {
             NewTransparentColorImage(imageName, fileName, transColor);
         }
 
+        //Used to load a new sound into the game's memory, by identifying the sound name and file location
         private static void NewSound(string soundName, string filename)
         {
             _Sounds.Add(soundName, Audio.LoadSoundEffect(SwinGame.PathToResource(filename, ResourceKind.SoundResource)));
         }
 
+        //Used to load a new music track into the game's memory, by identifying the name and file location
         private static void NewMusic(string musicName, string filename)
         {
             _Music.Add(musicName, Audio.LoadMusic(SwinGame.PathToResource(filename, ResourceKind.SoundResource)));
         }
 
+        //This method can be called to clear the font variables in memory
         private static void FreeFonts()
         {
             Font obj = default;
@@ -273,6 +293,7 @@ namespace Battleship
                 SwinGame.FreeFont(o);
         }
 
+        //This method can be called to clear the image variables in memory
         private static void FreeImages()
         {
             Bitmap obj = default(Bitmap);
@@ -289,6 +310,7 @@ namespace Battleship
                 Audio.FreeSoundEffect(o);
         }
 
+        //This method can be called to clear the music variables in memory
         private static void FreeMusic()
         {
             Music obj = default(Music);
@@ -296,6 +318,7 @@ namespace Battleship
                 Audio.FreeMusic(o);
         }
 
+        //This method is used to call each of the resource types relevant clear resources in memory
         public static void FreeResources()
         {
             FreeFonts();
