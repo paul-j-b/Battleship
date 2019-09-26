@@ -85,8 +85,9 @@ namespace Battleship
             public static bool operator ==(Location @this, Location other)
             {
                 // ** BUG **
+                // ** Occurs when AI sinks a player ship. **
                 // ** Exception unhandled. Stack overflow something something. **
-                return @this != null && other != null && @this.Row == other.Row && @this.Column == other.Column;
+                return !(@this is null) && !(other is null) && @this.Row == other.Row && @this.Column == other.Column;
             }
 
             /// <summary>
@@ -99,7 +100,7 @@ namespace Battleship
             {
                 // ** BUG **
                 // ** Exception unhandled. Stack overflow something something. **
-                return @this == null || other == null || @this.Row != other.Row || @this.Column != other.Column;
+                return @this is null || other is null || @this.Row != other.Row || @this.Column != other.Column;
             }
         }
 
