@@ -288,7 +288,7 @@ namespace Battleship
                     }
             }
 
-            SwinGame.DrawFramerate(675, 585);
+            SwinGame.DrawFramerate(610, 585);
         }
 
         public static void AddExplosion(int row, int col)

@@ -66,6 +66,9 @@ namespace Battleship
             string filename;
             filename = SwinGame.PathToResource("highscores.txt");
 
+            if (!File.Exists(filename))
+                File.Create(filename);
+
             StreamReader input;
             input = new StreamReader(filename);
 

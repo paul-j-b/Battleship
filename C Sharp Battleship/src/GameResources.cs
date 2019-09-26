@@ -269,14 +269,14 @@ namespace Battleship
         private static void FreeFonts()
         {
             Font obj = default;
-            foreach (var o in _Fonts.Values)
+            foreach (Font o in _Fonts.Values)
                 SwinGame.FreeFont(o);
         }
 
         private static void FreeImages()
         {
             Bitmap obj = default(Bitmap);
-            foreach (var o in _Images.Values)
+            foreach (Bitmap o in _Images.Values)
                 SwinGame.FreeBitmap(o);
         }
 
@@ -285,14 +285,14 @@ namespace Battleship
         private static void FreeSounds()
         {
             SoundEffect obj = default(SoundEffect);
-            foreach (var o in _Sounds.Values)
+            foreach (SoundEffect o in _Sounds.Values)
                 Audio.FreeSoundEffect(o);
         }
 
         private static void FreeMusic()
         {
             Music obj = default(Music);
-            foreach (var o in _Music.Values)
+            foreach (Music o in _Music.Values)
                 Audio.FreeMusic(o);
         }
 
