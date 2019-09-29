@@ -308,19 +308,17 @@ namespace Battleship
         /// <param name="button">the button pressed</param>
         private static void PerformSetupMenuAction(int button)
         {
-            // ** BUG **
-            // ** All buttons set difficulty to hard. **
             switch (button)
             {
                 case SETUP_MENU_EASY_BUTTON:
                     {
-                        GameController.SetDifficulty(AIOption.Hard);
+                        GameController.SetDifficulty(AIOption.Easy);
                         break;
                     }
 
                 case SETUP_MENU_MEDIUM_BUTTON:
                     {
-                        GameController.SetDifficulty(AIOption.Hard);
+                        GameController.SetDifficulty(AIOption.Medium);
                         break;
                     }
 
