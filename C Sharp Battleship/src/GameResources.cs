@@ -301,13 +301,10 @@ namespace Battleship
                 SwinGame.FreeBitmap(o);
         }
 
-        // ** BUG **
-        // ** Exception unhandled. **
         private static void FreeSounds()
         {
-            SoundEffect obj = default(SoundEffect);
-            foreach (var o in _Sounds.Values)
-                Audio.FreeSoundEffect(o);
+            foreach (SoundEffect obj in _Sounds.Values)
+                Audio.ReleaseSoundEffect(Audio.SoundEffectName(obj));
         }
 
         //This method can be called to clear the music variables in memory
