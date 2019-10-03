@@ -178,43 +178,52 @@ namespace Battleship
             if (_Scores.Count == 0)
                 LoadScores();
 
+            bool temp = true;
+
             if (_Scores.Count > 0)
             {
-                // is it a high score
-                if (value > _Scores[_Scores.Count - 1].Value)
+                if (value < _Scores[_Scores.Count - 1].Value)
                 {
-                    Score s = new Score();
-                    s.Value = value;
-
-                    GameController.AddNewState(GameState.ViewingHighScores);
-
-                    int x;
-                    x = SCORES_LEFT + SwinGame.TextWidth(GameResources.GameFont("Courier"), "Name: ");
-
-                    SwinGame.StartReadingText(Color.White, NAME_WIDTH, GameResources.GameFont("Courier"), x, ENTRY_TOP);
-
-                    // Read the text from the user
-                    while (SwinGame.ReadingText())
-                    {
-                        SwinGame.ProcessEvents();
-
-                        UtilityFunctions.DrawBackground();
-                        DrawHighScores();
-                        SwinGame.DrawText("Name: ", Color.White, GameResources.GameFont("Courier"), SCORES_LEFT, ENTRY_TOP);
-                        SwinGame.RefreshScreen();
-                    }
-
-                    s.Name = SwinGame.TextReadAsASCII();
-
-                    if (s.Name.Length < 3)
-                        s.Name = s.Name + new string(System.Convert.ToChar(" "), 3 - s.Name.Length);
-
-                    _Scores.RemoveAt(_Scores.Count - 1);
-                    _Scores.Add(s);
-                    _Scores.Sort();
-
-                    GameController.EndCurrentState();
+                    temp = false;
                 }
+            }
+
+            // is it a high score
+            if (temp)
+            {
+                Score s = new Score();
+                s.Value = value;
+
+                GameController.AddNewState(GameState.ViewingHighScores);
+
+                int x;
+                x = SCORES_LEFT + SwinGame.TextWidth(GameResources.GameFont("Courier"), "Name: ");
+
+                SwinGame.StartReadingText(Color.White, NAME_WIDTH, GameResources.GameFont("Courier"), x, ENTRY_TOP);
+
+                // Read the text from the user
+                while (SwinGame.ReadingText())
+                {
+                    SwinGame.ProcessEvents();
+
+                    UtilityFunctions.DrawBackground();
+                    DrawHighScores();
+                    SwinGame.DrawText("Name: ", Color.White, GameResources.GameFont("Courier"), SCORES_LEFT, ENTRY_TOP);
+                    SwinGame.RefreshScreen();
+                }
+
+                s.Name = SwinGame.TextReadAsASCII();
+
+                if (s.Name.Length < 3)
+                    s.Name = s.Name + new string(System.Convert.ToChar(" "), 3 - s.Name.Length);
+
+                if (!temp)
+                    _Scores.RemoveAt(_Scores.Count - 1);
+
+                _Scores.Add(s);
+                _Scores.Sort();
+
+                GameController.EndCurrentState();
             }
         }
     }
