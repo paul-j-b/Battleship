@@ -178,8 +178,8 @@ namespace Battleship
             if (_Scores.Count == 0)
                 LoadScores();
 
-            //if (_Scores.Count > 0)
-            //{
+            if (_Scores.Count > 0)
+            {
                 // is it a high score
                 if (value > _Scores[_Scores.Count - 1].Value)
                 {
@@ -215,7 +215,7 @@ namespace Battleship
 
                     GameController.EndCurrentState();
                 }
-            //}
+            }
         }
     }
 

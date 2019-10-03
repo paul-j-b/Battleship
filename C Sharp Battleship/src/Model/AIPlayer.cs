@@ -132,7 +132,7 @@ namespace Battleship
 
             do
             {
-                Delay();
+                //Delay();
                 GenerateCoords(ref row, ref column);
                 result = _game.Shoot(row, column);
                 ProcessShot(row, column, result);
